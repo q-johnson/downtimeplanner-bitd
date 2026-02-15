@@ -1,0 +1,39 @@
+<div class="activity-dialog-layout">
+  <div class="description-column">
+    <div class="activity-description">
+      {{{description}}}
+    </div>
+  </div>
+
+  <div class="form-column">
+    <form class="activity-form">
+    <div class="form-group">
+      <label for="healing-method">{{localize "BITD.DowntimePlanner.Recover.HealingMethod"}}</label>
+      <select id="healing-method" name="healingMethod" required>
+        <option value="">{{localize "BITD.DowntimePlanner.Recover.SelectMethod"}}</option>
+        <option value="Contact" {{#if (eq data.healingMethod "Contact")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Recover.Contact"}}</option>
+        <option value="Crewmate" {{#if (eq data.healingMethod "Crewmate")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Recover.Crewmate"}}</option>
+      </select>
+    </div>
+
+    <div class="form-group" id="contact-quality-group" style="display: none;">
+      <label for="contact-quality">{{localize "BITD.DowntimePlanner.Recover.ContactQuality"}}</label>
+      <input type="number" id="contact-quality" name="contactQuality" value="{{data.contactQuality}}" min="0" max="6" placeholder="0-6" />
+    </div>
+
+    <div class="form-group" id="crewmate-tinker-group" style="display: none;">
+      <label for="crewmate-tinker">{{localize "BITD.DowntimePlanner.Recover.CrewmateTinker"}}</label>
+      <input type="number" id="crewmate-tinker" name="crewmateTinker" value="{{data.crewmateTinker}}" min="0" max="4" placeholder="0-4" />
+    </div>
+    </form>
+
+    <div class="activity-footer">
+      <button type="button" data-action="cancel">
+        <i class="fas fa-times"></i> {{localize "BITD.DowntimePlanner.Cancel"}}
+      </button>
+      <button type="button" data-action="confirm" class="primary-button">
+        <i class="fas fa-check"></i> {{localize "BITD.DowntimePlanner.Confirm"}}
+      </button>
+    </div>
+  </div>
+</div>

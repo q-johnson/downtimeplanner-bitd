@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build artifacts
+*.zip
+dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Personal docs
+PLAN.md
+DOWNTIME-REFERENCE.md

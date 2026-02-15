@@ -1,0 +1,45 @@
+<div class="activity-dialog-layout">
+  <div class="description-column">
+    <div class="activity-description">
+      {{{description}}}
+    </div>
+  </div>
+
+  <div class="form-column">
+    <form class="activity-form">
+    <div class="form-group">
+      <label for="vicePurveyor">{{localize "BITD.DowntimePlanner.IndulgeVice.VicePurveyor"}}</label>
+      <input type="text" id="vicePurveyor" name="vicePurveyor" value="{{data.vicePurveyor}}" placeholder="{{localize 'BITD.DowntimePlanner.IndulgeVice.PurveyorPlaceholder'}}" />
+    </div>
+
+    <div class="form-group">
+      <label for="indulgenceDescription">{{localize "BITD.DowntimePlanner.IndulgeVice.IndulgenceDescription"}}</label>
+      <input type="text" id="indulgenceDescription" name="indulgenceDescription" value="{{data.indulgenceDescription}}" placeholder="{{localize 'BITD.DowntimePlanner.IndulgeVice.DescriptionPlaceholder'}}" />
+    </div>
+
+    <div class="form-group">
+      <label for="lowestAttribute">{{{localize "BITD.DowntimePlanner.IndulgeVice.LowestAttribute"}}}</label>
+      <select id="lowestAttribute" name="lowestAttribute">
+        <option value="">{{localize "BITD.DowntimePlanner.IndulgeVice.SelectAttribute"}}</option>
+        <option value="Insight" {{#if (eq data.lowestAttribute "Insight")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Attributes.Insight"}}</option>
+        <option value="Prowess" {{#if (eq data.lowestAttribute "Prowess")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Attributes.Prowess"}}</option>
+        <option value="Resolve" {{#if (eq data.lowestAttribute "Resolve")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Attributes.Resolve"}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="currentStress">{{{localize "BITD.DowntimePlanner.IndulgeVice.CurrentStress"}}}</label>
+      <input type="number" id="currentStress" name="currentStress" value="{{data.currentStress}}" min="0" max="9" placeholder="{{localize 'BITD.DowntimePlanner.IndulgeVice.StressPlaceholder'}}" />
+    </div>
+    </form>
+
+    <div class="activity-footer">
+      <button type="button" data-action="cancel">
+        <i class="fas fa-times"></i> {{localize "BITD.DowntimePlanner.Cancel"}}
+      </button>
+      <button type="button" data-action="confirm" class="primary-button">
+        <i class="fas fa-check"></i> {{localize "BITD.DowntimePlanner.Confirm"}}
+      </button>
+    </div>
+  </div>
+</div>

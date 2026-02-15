@@ -1,0 +1,106 @@
+<div class="downtime-planner-content">
+  <div class="downtime-description">
+    {{{description}}}
+  </div>
+
+  {{#if showTraumaWarning}}
+  <div class="trauma-warning-banner">
+    <i class="fas fa-exclamation-triangle"></i>
+    <strong>Warning:</strong> You have {{traumaValue}} trauma. If you do not indulge your vice during downtime, you must increase your stress by {{traumaValue}}.
+  </div>
+  {{/if}}
+
+  <div class="activities-list">
+    {{#each activities}}
+      <div class="activity-summary" data-activity-id="{{this.id}}">
+        <div class="activity-info">
+          <strong>{{#if (eq this.type "acquire-asset")}}{{localize "BITD.DowntimePlanner.AcquireAsset.Title"}}{{else if (eq this.type "long-term-project")}}{{localize "BITD.DowntimePlanner.LongTermProject.Title"}}{{else if (eq this.type "recover")}}{{localize "BITD.DowntimePlanner.Recover.Title"}}{{else if (eq this.type "reduce-heat")}}{{localize "BITD.DowntimePlanner.ReduceHeat.Title"}}{{else if (eq this.type "train")}}{{localize "BITD.DowntimePlanner.Train.Title"}}{{else if (eq this.type "indulge-vice")}}{{localize "BITD.DowntimePlanner.IndulgeVice.Title"}}{{else}}{{this.type}}{{/if}}</strong>
+          <span class="activity-details">
+            {{#if (eq this.type "acquire-asset")}}
+              {{#if this.data.assetName}}
+                {{this.data.assetName}}
+                {{#if this.data.qualityTier}} ({{localize "BITD.DowntimePlanner.TierDisplay" tier=this.data.qualityTier}}){{/if}}
+                {{#if this.data.acquiredBefore}}<span class="activity-tag">{{localize "BITD.DowntimePlanner.AcquireAsset.PreviouslyAcquiredTag"}}</span>{{/if}}
+                {{#if this.data.restrictedAsset}}<span class="activity-tag warning">{{localize "BITD.DowntimePlanner.AcquireAsset.RestrictedTag"}}</span>{{/if}}
+              {{else}}
+                {{localize "BITD.DowntimePlanner.NoDetailsProvided"}}
+              {{/if}}
+            {{else if (eq this.type "long-term-project")}}
+              {{#if this.data.projectName}}
+                {{this.data.projectName}}
+                {{#if this.data.actionRoll}}<span class="activity-tag">{{localize (concat "BITD.DowntimePlanner.Actions." this.data.actionRoll)}}</span>{{/if}}
+              {{else}}
+                {{localize "BITD.DowntimePlanner.NoDetailsProvided"}}
+              {{/if}}
+            {{else if (eq this.type "recover")}}
+              {{#if this.data.healingMethod}}
+                {{localize (concat "BITD.DowntimePlanner.Recover." this.data.healingMethod)}}
+                {{#if (eq this.data.healingMethod "Contact")}}
+                  {{#if this.data.contactQuality}}<span class="activity-tag">Quality: {{this.data.contactQuality}}</span>{{/if}}
+                {{/if}}
+                {{#if (eq this.data.healingMethod "Crewmate")}}
+                  {{#if this.data.crewmateTinker}}<span class="activity-tag">Tinker: {{this.data.crewmateTinker}}</span>{{/if}}
+                {{/if}}
+              {{else}}
+                {{localize "BITD.DowntimePlanner.NoDetailsProvided"}}
+              {{/if}}
+            {{else if (eq this.type "reduce-heat")}}
+              {{#if this.data.heatReductionMethod}}
+                {{this.data.heatReductionMethod}}
+                {{#if this.data.actionRoll}}<span class="activity-tag">{{localize (concat "BITD.DowntimePlanner.Actions." this.data.actionRoll)}}</span>{{/if}}
+              {{else}}
+                {{localize "BITD.DowntimePlanner.NoDetailsProvided"}}
+              {{/if}}
+            {{else if (eq this.type "train")}}
+              {{#if this.data.trainingType}}
+                {{#if (eq this.data.trainingType "Playbook")}}
+                  {{localize "BITD.DowntimePlanner.Train.Playbook"}}
+                {{else}}
+                  {{localize (concat "BITD.DowntimePlanner.Attributes." this.data.trainingType)}}
+                {{/if}}
+                {{#if this.data.crewUpgrade}}<span class="activity-tag">+1 XP (Crew Upgrade)</span>{{/if}}
+              {{else}}
+                {{localize "BITD.DowntimePlanner.NoDetailsProvided"}}
+              {{/if}}
+            {{else if (eq this.type "indulge-vice")}}
+              {{#if this.data.indulgenceDescription}}
+                {{this.data.indulgenceDescription}}
+                {{#if this.data.lowestAttribute}}<span class="activity-tag">{{localize (concat "BITD.DowntimePlanner.Attributes." this.data.lowestAttribute)}}</span>{{/if}}
+                {{#if this.data.currentStress}}<span class="activity-tag">Stress: {{this.data.currentStress}}</span>{{/if}}
+              {{else}}
+                {{localize "BITD.DowntimePlanner.NoDetailsProvided"}}
+              {{/if}}
+            {{else}}
+              {{localize "BITD.DowntimePlanner.FeatureInProgress"}}
+            {{/if}}
+          </span>
+        </div>
+        <div class="activity-actions">
+          <button type="button" data-action="editActivity" data-activity-id="{{this.id}}">
+            <i class="fas fa-edit"></i> {{localize "BITD.DowntimePlanner.Edit"}}
+          </button>
+          <button type="button" data-action="removeActivity" data-activity-id="{{this.id}}">
+            <i class="fas fa-trash"></i> {{localize "BITD.DowntimePlanner.Remove"}}
+          </button>
+        </div>
+      </div>
+    {{/each}}
+
+    {{#if canAdd}}
+      <div class="add-activity-box">
+        <button type="button" data-action="addActivity" class="add-activity-button">
+          <i class="fas fa-plus"></i> {{localize "BITD.DowntimePlanner.AddDowntimeActivity"}}
+        </button>
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="downtime-footer">
+    <button type="button" data-action="startOver" class="start-over-button">
+      <i class="fas fa-redo"></i> {{localize "BITD.DowntimePlanner.StartOver.Label"}}
+    </button>
+    <button type="button" data-action="sendToChat" class="send-to-chat-button">
+      <i class="fas fa-comment"></i> {{localize "BITD.DowntimePlanner.SendChoicesToChat.Label"}}
+    </button>
+  </div>
+</div>

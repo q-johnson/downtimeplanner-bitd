@@ -1,0 +1,50 @@
+<div class="activity-dialog-layout">
+  <div class="description-column">
+    <div class="activity-description">
+      {{{description}}}
+    </div>
+  </div>
+
+  <div class="form-column">
+    <form class="activity-form">
+    <div class="form-group">
+      <label for="project-name">{{localize "BITD.DowntimePlanner.LongTermProject.ProjectName"}}</label>
+      <input type="text" id="project-name" name="projectName" value="{{data.projectName}}" placeholder="{{localize "BITD.DowntimePlanner.LongTermProject.ProjectPlaceholder"}}" required />
+    </div>
+
+    <div class="form-group">
+      <label for="action-roll">{{localize "BITD.DowntimePlanner.LongTermProject.ActionRoll"}}</label>
+      <select id="action-roll" name="actionRoll" required>
+        <option value="">{{localize "BITD.DowntimePlanner.LongTermProject.SelectAction"}}</option>
+        <optgroup label="{{localize "BITD.DowntimePlanner.Attributes.Insight"}}">
+          <option value="Hunt" {{#if (eq data.actionRoll "Hunt")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Hunt"}}</option>
+          <option value="Study" {{#if (eq data.actionRoll "Study")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Study"}}</option>
+          <option value="Survey" {{#if (eq data.actionRoll "Survey")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Survey"}}</option>
+          <option value="Tinker" {{#if (eq data.actionRoll "Tinker")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Tinker"}}</option>
+        </optgroup>
+        <optgroup label="{{localize "BITD.DowntimePlanner.Attributes.Prowess"}}">
+          <option value="Finesse" {{#if (eq data.actionRoll "Finesse")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Finesse"}}</option>
+          <option value="Prowl" {{#if (eq data.actionRoll "Prowl")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Prowl"}}</option>
+          <option value="Skirmish" {{#if (eq data.actionRoll "Skirmish")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Skirmish"}}</option>
+          <option value="Wreck" {{#if (eq data.actionRoll "Wreck")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Wreck"}}</option>
+        </optgroup>
+        <optgroup label="{{localize "BITD.DowntimePlanner.Attributes.Resolve"}}">
+          <option value="Attune" {{#if (eq data.actionRoll "Attune")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Attune"}}</option>
+          <option value="Command" {{#if (eq data.actionRoll "Command")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Command"}}</option>
+          <option value="Consort" {{#if (eq data.actionRoll "Consort")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Consort"}}</option>
+          <option value="Sway" {{#if (eq data.actionRoll "Sway")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Actions.Sway"}}</option>
+        </optgroup>
+      </select>
+    </div>
+    </form>
+
+    <div class="activity-footer">
+      <button type="button" data-action="cancel">
+        <i class="fas fa-times"></i> {{localize "BITD.DowntimePlanner.Cancel"}}
+      </button>
+      <button type="button" data-action="confirm" class="primary-button">
+        <i class="fas fa-check"></i> {{localize "BITD.DowntimePlanner.Confirm"}}
+      </button>
+    </div>
+  </div>
+</div>

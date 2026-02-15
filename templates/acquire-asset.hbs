@@ -1,0 +1,44 @@
+<div class="activity-dialog-layout">
+  <div class="description-column">
+    <div class="activity-description">
+      {{{description}}}
+    </div>
+  </div>
+
+  <div class="form-column">
+    <form class="activity-form">
+    <div class="form-group">
+      <label for="asset-name">{{localize "BITD.DowntimePlanner.AcquireAsset.AssetTextBox"}}</label>
+      <input type="text" id="asset-name" name="assetName" value="{{data.assetName}}" placeholder="{{localize "BITD.DowntimePlanner.AcquireAsset.AssetPlaceholder"}}" required />
+    </div>
+
+    <div class="form-group">
+      <label for="quality-tier">{{localize "BITD.DowntimePlanner.AcquireAsset.MinQualityTier"}} <span class="optional">{{localize "BITD.DowntimePlanner.Optional"}}</span></label>
+      <input type="number" id="quality-tier" name="qualityTier" value="{{data.qualityTier}}" min="0" max="6" placeholder="{{localize "BITD.DowntimePlanner.AcquireAsset.TierPlaceholder"}}" />
+    </div>
+
+    <div class="form-group checkbox-group">
+      <label>
+        <input type="checkbox" name="acquiredBefore" {{#if data.acquiredBefore}}checked{{/if}} />
+        <span>{{localize "BITD.DowntimePlanner.AcquireAsset.AcquiredBefore"}}</span>
+      </label>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <label>
+        <input type="checkbox" name="restrictedAsset" {{#if data.restrictedAsset}}checked{{/if}} />
+        <span>{{localize "BITD.DowntimePlanner.AcquireAsset.HighlyRestricted"}}</span>
+      </label>
+    </div>
+    </form>
+
+    <div class="activity-footer">
+      <button type="button" data-action="cancel">
+        <i class="fas fa-times"></i> {{localize "BITD.DowntimePlanner.Cancel"}}
+      </button>
+      <button type="button" data-action="confirm" class="primary-button">
+        <i class="fas fa-check"></i> {{localize "BITD.DowntimePlanner.Confirm"}}
+      </button>
+    </div>
+  </div>
+</div>

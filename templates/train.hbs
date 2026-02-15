@@ -1,0 +1,40 @@
+<div class="activity-dialog-layout">
+  <div class="description-column">
+    <div class="activity-description">
+      {{{description}}}
+    </div>
+  </div>
+
+  <div class="form-column">
+    <form class="activity-form">
+    <div class="form-group">
+      <label for="trainingType">{{localize "BITD.DowntimePlanner.Train.TrainingType"}}</label>
+      <select id="trainingType" name="trainingType">
+        <option value="">{{localize "BITD.DowntimePlanner.Train.SelectType"}}</option>
+        <optgroup label="{{localize 'BITD.DowntimePlanner.Train.Attribute'}}">
+          <option value="Insight" {{#if (eq data.trainingType "Insight")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Attributes.Insight"}} (+1 XP)</option>
+          <option value="Prowess" {{#if (eq data.trainingType "Prowess")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Attributes.Prowess"}} (+1 XP)</option>
+          <option value="Resolve" {{#if (eq data.trainingType "Resolve")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Attributes.Resolve"}} (+1 XP)</option>
+        </optgroup>
+        <option value="Playbook" {{#if (eq data.trainingType "Playbook")}}selected{{/if}}>{{localize "BITD.DowntimePlanner.Train.Playbook"}} (+1 XP)</option>
+      </select>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <label>
+        <input type="checkbox" name="crewUpgrade" {{#if data.crewUpgrade}}checked{{/if}} />
+        {{localize "BITD.DowntimePlanner.Train.CrewUpgrade"}}
+      </label>
+    </div>
+    </form>
+
+    <div class="activity-footer">
+      <button type="button" data-action="cancel">
+        <i class="fas fa-times"></i> {{localize "BITD.DowntimePlanner.Cancel"}}
+      </button>
+      <button type="button" data-action="confirm" class="primary-button">
+        <i class="fas fa-check"></i> {{localize "BITD.DowntimePlanner.Confirm"}}
+      </button>
+    </div>
+  </div>
+</div>
